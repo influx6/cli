@@ -1,30 +1,36 @@
 # Step CLI
 
-`step` is a zero trust swiss army knife. It’s an easy-to-use and hard-to-misuse
+`step` is a zero trust swiss army knife. It's an easy-to-use and hard-to-misuse
 utility for building, operating, and automating systems that use zero trust
 technologies like authenticated encryption (X.509, TLS), single sign-on (OAuth
-OIDC, SAML), multi-factor authentication (OATH OTP, FIDO U2F), encryption
-mechanisms (JSON Web Encryption, NaCl), and verifiable claims (JWT, SAML
-assertions).
+OIDC, SAML), multi-factor authentication (OATH OTP, FIDO U2F),
+encryption mechanisms (JSON Web Encryption, NaCl), and verifiable
+claims (JWT, SAML assertions).
 
-For more information and docs see [the step website](https://smallstep.com/cli/)
+[Website](https://smallstep.com) |
+[Documentation](https://smallstep.com/docs/cli) |
+[Installation Guide](#installation-guide) |
+[Examples](#examples) |
+[Contribution Guide](./docs/CONTRIBUTING.md)
+
+[![GitHub release](https://img.shields.io/github/release/smallstep/cli.svg)](https://github.com/smallstep/cli/releases)
+[![CA Image](https://images.microbadger.com/badges/image/smallstep/step-cli.svg)](https://microbadger.com/images/smallstep/step-cli)
+[![Go Report Card](https://goreportcard.com/badge/github.com/smallstep/cli)](https://goreportcard.com/report/github.com/smallstep/cli)
+[![Build Status](https://travis-ci.com/smallstep/cli.svg?branch=master)](https://travis-ci.com/smallstep/cli)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![CLA assistant](https://cla-assistant.io/readme/badge/smallstep/cli)](https://cla-assistant.io/smallstep/cli)
+
+[![GitHub stars](https://img.shields.io/github/stars/smallstep/cli.svg?style=social)](https://github.com/smallstep/cli/stargazers)
+[![Twitter followers](https://img.shields.io/twitter/follow/smallsteplabs.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=smallsteplabs)
+
+
+For more information see [the step website](https://smallstep.com/cli/)
 and the [blog post](https://smallstep.com/blog/zero-trust-swiss-army-knife.html)
 announcing step.
 
 ![Animated terminal showing step in practice](https://smallstep.com/images/blog/2018-08-07-unfurl.gif)
 
-### Table of Contents
-
-- [Installing](#installing)
-- [Documentation](#documentation)
-- [Examples](#examples)
-- [Getting Started with Development](#getting-started-with-development)
-- [How To Add A New Command](./command/README.md)
-- [How To Create A New Release](./distribution.md)
-- [LICENSE](./LICENSE)
-- [CHANGELOG](./CHANGELOG.md)
-
-## Installing
+## Installation Guide
 
 These instructions will install an OS specific version of the `step` binary on
 your local machine. To build from source see [getting started with
@@ -68,16 +74,6 @@ Test:
 ```
 step certificate inspect https://smallstep.com
 ```
-
-## Documentation
-
-Documentation can be found in three places:
-
-1. On the command line with `step help xxx` where `xxx` is the subcommand you are interested in. Ex: `step help crypto jwk`
-
-2. On the web at https://smallstep.com/docs/cli
-
-3. In your browser with `step help --http :8080` and visiting http://localhost:8080
 
 ## Examples
 
@@ -181,102 +177,32 @@ it to verify the TOTP token:
 $ step crypto otp verify --secret smallstep.totp
 ```
 
-## Getting Started with Development
+## Documentation
 
-These instructions will get you a copy of the project up and running on your
-local machine for development, testing, and contribution purposes.
+Documentation can be found in three places:
 
-Please read the [CLI Style Guide](https://github.com/urfave/cli) before
-implementing any features or modifying behavior as it contains expectations
-surrounding how the CLI should behave.
+1. On the command line with `step help xxx` where `xxx` is the subcommand you
+   are interested in. Ex: `step help crypto jwk`
 
-All changes to behavior *must* be documented in the [CHANGELOG.md](./CHANGELOG.md).
+2. On the web at https://smallstep.com/docs/cli
 
-### Prerequisites
+3. On your browser by running `step help --http :8080` and visiting
+   http://localhost:8080
 
-To get started with local development, you will need three things:
+## The Future
 
-- Golang installed locally (instructions available
-[here](https://golang.org/doc/install)).
-- dep installed locally (instructions available
-[here](https://golang.github.io/dep/docs/installation.html)).
-- A version of `make` available for usage of the `Makefile`.
-- The repository checked out in the appropriate location of your `$GOPATH`.
+We plan to build more tools that facilitate the use and management of zero trust
+networks.
 
-Ensure you've checked out the repository into the appropriate path inside your
-`$GOPATH`. For example, if your `$GOPATH` is set to `~/go`, then you'd check
-this repository out at `~/go/src/github.com/smallstep/cli`. You can
-learn more about `$GOPATH` in the
-[documentation](https://golang.org/doc/code.html#GOPATH).
+* Tell us what you like and don't like about managing identity in your
+network - we're eager to help solve problems in this space.
+* Tell us what features you'd like to see - open issues or hit us on
+[Twitter](https://twitter.com/smallsteplabs).
 
-### Installing Dependencies and Bootstrapping
+## Further Reading
 
-Once you've cloned the repository to the appropriate location, you will now be
-able to install any other dependencies via the `make bootstrap` command.
-
-You should only ever need to run this command once, as it will ensure you have
-the right version of `dep` and `gometalinter` installed.
-
-### Building step
-
-To build step, simply run `make build` which will build the cli and place the
-binary in the `bin` folder.
-
-### Running Tests and Linting
-
-Now that you've installed any dependencies, you can run the tests and lint the
-code base simply by running `make`.
-
-#### Unit Tests
-
-Run the unit tests:
-
-```
-make test
-```
-
-For a more verbose version of the unit tests:
-
-```
-make vtest
-```
-
-#### Integration Tests
-
-Run the integration tests:
-
-```
-make integration
-```
-
-#### And coding style tests
-
-These tests apply the following `Go` linters to verify code style and formatting:
-
-* [deadcode](https://github.com/tsenart/deadcode)
-* [gofmt](https://golang.org/cmd/gofmt/)
-* [golint](https://github.com/golang/lint/golint)
-* [ineffassign](https://github.com/gordonklaus/ineffassign)
-* [metalinter](https://github.com/alecthomas/gometalinter)
-* [misspell](https://github.com/client9/misspell/cmd/misspell)
-* [vet](https://golang.org/cmd/vet/)
-
-```
-make lint
-```
-
-### Adding and Removing Dependencies
-
-To add any dependency to the repository, simply import it into your code and
-then run `dep ensure` which will update the `Gopkg.lock` file. A specific
-version of a dependency can be specified by adding it to the `Gopkg.toml` file
-and running `dep ensure`.
-
-To remove a dependency, simply remove it from the codebase and any mention of
-it in the `Gopkg.toml` file and run `dep ensure` which will remove it from the
-`vendor` folder while updating the `Gopkg.lock` file.
-
-## License
-
-This project is licensed under the Apache 2.0 License - see the
-[LICENSE](./LICENSE) file for details
+* [Blog post](https://smallstep.com/blog/zero-trust-swiss-army-knife.html)
+announcing `step`.
+* Check out [`step certificates`](https://github.com/smallstep/certificates) -
+an online certificate authority and related tools for secure automated
+certificate management, so you can use TLS everywhere.
